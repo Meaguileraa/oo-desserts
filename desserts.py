@@ -18,6 +18,30 @@ class Cupcake:
 
       self.cache[name] = self
 
+    def add_stock(self, amount):
+      """Add cupcakes by given amount to quantity"""
+      
+      self.qty += amount
+
+    def sell(self, amount):
+      """Sell the given amount of cupcakes and update quantity"""
+
+      if self.qty == 0:
+        print("Sorry, these cupcakes are sold out.")
+        return
+
+      if self.qty < amount:
+        self.qty = 0
+        return
+
+      self.qty -= amount
+
+        #make sure quantity amount never goes below zero 
+        #if no cupcakes print sold out 
+        #sell cupcakes and update self.qty
+
+
+
 
 if __name__ == '__main__':
     import doctest

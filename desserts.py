@@ -10,7 +10,9 @@ class Cupcake:
 
         return f'<Cupcake name="{self.name}" qty={self.qty}>'
 
+
     def __init__(self, name, flavor, price):
+      """Initializing"""
       self.name = name
       self.flavor = flavor
       self.price = price
@@ -18,10 +20,12 @@ class Cupcake:
 
       self.cache[name] = self
 
+
     def add_stock(self, amount):
       """Add cupcakes by given amount to quantity"""
 
       self.qty += amount
+
 
     def sell(self, amount):
       """Sell the given amount of cupcakes and update quantity"""
@@ -31,7 +35,7 @@ class Cupcake:
         #sell cupcakes and update self.qty
 
       if self.qty == 0:
-        print("Sorry, these cupcakes are sold out.")
+        print("Sorry, these cupcakes are sold out")
         return
 
       if self.qty < amount:
@@ -48,14 +52,22 @@ class Cupcake:
      #ingredients is a list of tuples with ing name and quantity
      #Calling a static method: Cupcake.scale_recipe([('flour', 1), ('eggs', 3), 2])
 
-     for ingredient_name, ingredient_qty in ingredients:
-      ingredients = (ingredient_name, ingredient_qty * amount)
+      for ingredient_name, ingredient_qty in ingredients:
+        ingredients = (ingredient_name, ingredient_qty * amount)
 
-     return ingredients
-
-
+      return ingredients
 
 
+    @classmethod
+    def get(cls, name):
+      """Return a cupcake from cache dictionary"""
+      #if name doesn't exist then print non existant 
+
+      if name not in cache: 
+        print("Sorry, that cupcake doesn't exist")
+        return
+
+      return cls.cache[name]
 
 
 

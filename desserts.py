@@ -20,11 +20,15 @@ class Cupcake:
 
     def add_stock(self, amount):
       """Add cupcakes by given amount to quantity"""
-      
+
       self.qty += amount
 
     def sell(self, amount):
       """Sell the given amount of cupcakes and update quantity"""
+
+        #make sure quantity amount never goes below zero 
+        #if no cupcakes print sold out 
+        #sell cupcakes and update self.qty
 
       if self.qty == 0:
         print("Sorry, these cupcakes are sold out.")
@@ -36,9 +40,21 @@ class Cupcake:
 
       self.qty -= amount
 
-        #make sure quantity amount never goes below zero 
-        #if no cupcakes print sold out 
-        #sell cupcakes and update self.qty
+
+    @staticmethod
+    def scale_recipe(ingredients, amount):
+      """Scale the list of ingredients by the given amount of cupcakes"""
+     
+     #ingredients is a list of tuples with ing name and quantity
+     #Calling a static method: Cupcake.scale_recipe([('flour', 1), ('eggs', 3), 2])
+
+     for ingredient_name, ingredient_qty in ingredients:
+      ingredients = (ingredient_name, ingredient_qty * amount)
+
+     return ingredients
+
+
+
 
 
 

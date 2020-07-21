@@ -4,11 +4,12 @@
 class Cupcake:
     """A cupcake."""
     cache = {}
+    class_name = 'Cupcake'
 
-    def __repr__(self):
+    def __repr__(self): #short for represent/ change how you show this object 
         """Human-readable printout for debugging."""
 
-        return f'<Cupcake name="{self.name}" qty={self.qty}>'
+        return f'<{cls.class_name} name="{self.name}" qty={self.qty}>'
 
 
     def __init__(self, name, flavor, price):
@@ -24,7 +25,7 @@ class Cupcake:
     def add_stock(self, amount):
       """Add cupcakes by given amount to quantity"""
 
-      self.qty += amount
+      self.qty += amount #was neevr assigned to attribute self. 
 
 
     def sell(self, amount):
@@ -35,7 +36,7 @@ class Cupcake:
         #sell cupcakes and update self.qty
 
       if self.qty == 0:
-        print("Sorry, these cupcakes are sold out")
+        print(f"Sorry, these {cls.class_name} are sold out")
         return
 
       if self.qty < amount:
@@ -51,11 +52,16 @@ class Cupcake:
      
      #ingredients is a list of tuples with ing name and quantity
      #Calling a static method: Cupcake.scale_recipe([('flour', 1), ('eggs', 3), 2])
+      
+      # scaled_recipe = []
+      # for ingredient_name, ingredient_qty in ingredients:
+      #   final = ingredient_name, ingredient_qty * amount
+      #   scaled_recipe.append(final)
+      # return scaled_recipe
+    
 
-      for ingredient_name, ingredient_qty in ingredients:
-        ingredients = (ingredient_name, ingredient_qty * amount)
-
-      return ingredients
+      return [(ingredient_name, ingredient_qty * amount) 
+      for ingredient_name, ingredient_qty in ingredients]
 
 
     @classmethod
@@ -63,11 +69,21 @@ class Cupcake:
       """Return a cupcake from cache dictionary"""
       #if name doesn't exist then print non existant 
 
-      if name not in cache: 
+      if name not in cls.cache: 
         print("Sorry, that cupcake doesn't exist")
         return
 
       return cls.cache[name]
+
+class Brownies(Cupcake):
+  """A brownie."""
+  class_name = 'Brownie'
+
+
+  def __init__(self, name, price):
+    """Initializing a brownie."""
+
+    super().__init__(name, 'chocolate', price)
 
 
 
